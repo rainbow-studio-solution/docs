@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-彩虹工作室文档
+首页
 ==========================================
 
 .. toctree::

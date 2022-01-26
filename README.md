@@ -2,10 +2,11 @@
 
 ## 安装以下软件包
 ```
-pip3 install sphinx
-pip3 install sphinx_theme
-pip3 install sphinx_rtd_theme
-pip3 install recommonmark
+pip3 install sphinx -i https://pypi.doubanio.com/simple
+pip3 install sphinx-autobuild -i https://pypi.doubanio.com/simple
+pip3 install sphinx_theme -i https://pypi.doubanio.com/simple
+pip3 install sphinx_rtd_theme -i https://pypi.doubanio.com/simple
+pip3 install recommonmark -i https://pypi.doubanio.com/simple
 ```
 
 ## 主题
