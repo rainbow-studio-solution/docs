@@ -1,9 +1,0 @@
-使用 Git
-=================================
-
-.. toctree::
-   :maxdepth: 2
-
-`Gitee <https://gitee.com/rainbowstudio/wecom>`_ 
-`Github <https://github.com/rainbow-studio-solution/wecom>`_ 
-
