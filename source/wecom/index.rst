@@ -4,4 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
-   install/index
+   get/index
+   applications/index
+   docker/index
+   sdk_service/index

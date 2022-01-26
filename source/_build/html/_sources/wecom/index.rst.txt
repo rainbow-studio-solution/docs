@@ -5,3 +5,5 @@
    :maxdepth: 2
 
    install/index
+   applications/index
+   docker/index

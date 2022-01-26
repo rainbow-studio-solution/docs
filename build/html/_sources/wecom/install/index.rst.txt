@@ -1,6 +1,8 @@
-安装
+获取代码
 =================================
 
-1. 安装第一个应用:
+.. toctree::
+   :maxdepth: 2
 
-.. image::img/firstapp.png
+   git/index
+   
