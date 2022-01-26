@@ -24,7 +24,7 @@ env/
 build/
 dist/
 Sphinx.egg-info/
-doc/_build/
+*/_build/
 doc/locale/
 tests/.coverage
 tests/build/
