@@ -5,3 +5,4 @@
    :maxdepth: 2
 
    install_app/index
+   syncing/index
