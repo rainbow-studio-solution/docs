@@ -1,9 +1,8 @@
-应用文档
+企微HRM
 =================================
 
 .. toctree::
    :maxdepth: 2
 
-   install_app/index
-   hrm/index
-   syncing/index
+
+
