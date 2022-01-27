@@ -24,3 +24,9 @@ sphinx-autobuild source build/html
 ```
 pip freeze > requirements.txt
 ```
+
+## 将分支  14.0完全覆盖 分支 master
+
+```
+git push origin 14.0:master -f
+```
