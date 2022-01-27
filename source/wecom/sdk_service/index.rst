@@ -4,7 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
-用途（暂时只有2个）
+用途
 ---------------------------------
 
 1. 用于获取企业微信会话内容存档的聊天记录
@@ -21,17 +21,55 @@
 2. 经过2周的时间，也无法解决odoo加载c++库崩溃的问题，我已经崩溃了，干脆使用FastAPI封装企业微信会话内部存档的SDK，让Odoo访问 FastAPI,获取到相关信息。
 
 
-安装依赖
+安装SDK服务
 ---------------------------------
 
-    | pip3 install requirements.txt -i https://pypi.doubanio.com/simple 
+感谢 群友 NickCake 的支持
 
-添加wecomsdk服务（尚未完善）
----------------------------------
+使用APT安装依赖
+:::::::::::::::::::::::::::::::::
 
-1. 复制 /wecom_sdk_service/app 下的所有文件到 /fastapi
-2. 添加 wecomsdk.service 文件到 /lib/systemd/system/
-3. 在 /lib/systemd/system/wecomsdk.service 中添加以下内容：
+请使用APT安装依赖，否则无法正常启动SDK服务
+
+.. code::
+
+    sudo apt-get install python3-httptools python3-uvloop python3-uvicorn 
+
+
+添加wecomsdk服务文件
+:::::::::::::::::::::::::::::::::
+
+1. 在 / 创建 fastapi 文件夹
+
+.. code::
+
+    cd /
+    mkdir fastapi
+
+2. 复制 /wecom_sdk_service/ 下的所有文件到 /fastapi
+3. 安装Python依赖
+
+.. code::
+
+    cd  /app
+    # 安装需要sudo pip安装，否则会安装到非home目录
+    sudo pip3 install requirements.txt -i https://pypi.doubanio.com/simple 
+
+4. 添加 wecomsdk.service 文件到 /lib/systemd/system/
+5. 使用 whereis 或 which 命令查询Python3 和 uvicorn 的路径，添加服务的时候需要用到
+
+.. code::
+
+    whereis python3
+    python3: /usr/bin/python3 /usr/bin/python3.7m /usr/bin/python3.7m-config /usr/bin/python3.7 /usr/bin/python3.7-config /usr/lib/python3 /usr/lib/python3.7 /etc/python3 /etc/python3.7 /usr/local/lib/python3.7 /usr/include/python3.7m /usr/include/python3.7 /usr/share/python3 /usr/share/man/man1/python3.1.gz
+    whereis uvicorn
+    uvicorn: /usr/local/bin/uvicorn
+
+    python3的路径:   /usr/bin/python3
+    uvicorn的路径:   /usr/local/bin/uvicorn
+
+
+6. 在 /lib/systemd/system/wecomsdk.service 中添加以下内容：
 
 .. code::
 
@@ -41,22 +79,24 @@
 
     [Service]
     Type=simple
-    ExecStart=/usr/bin/python3 /fastapi/main.py
-    StandardOutput=file:/var/log/wecom/wecom-server.log
+    WorkingDirectory=/fastapi
+    Environment=FLAGS="app.main:app --host 0.0.0.0 --port 8000"
+    ExecStart=python3的路径 uvicorn的路径 $FLAGS 
+    StandardOutput=/var/log/wecom/wecom-server.log
     Restart=always
-    RestartSec=5s
+    RestartSec=6
 
     [Install]
-    WantedBy=multi-user.target
+    WantedBy=default.target
 
-4. 启动服务
+7. 启动服务
    
 .. code::
 
     systemctl enable wecomsdk
     systemctl start wecomsdk
 
-5. 查看日志
+8. 查看日志
    
 .. code::
 
