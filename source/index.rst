@@ -7,7 +7,7 @@
 ==========================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: 项目:
 
    wecom/index
