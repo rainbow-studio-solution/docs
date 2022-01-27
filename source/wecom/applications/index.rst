@@ -8,3 +8,4 @@
    hrm/index
    syncing/index
    material/index
+   auth/index
