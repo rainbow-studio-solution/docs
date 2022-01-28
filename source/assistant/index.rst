@@ -11,4 +11,4 @@ Web助手是一个解决网页客户端无法使用大多数国产硬件的桌�
 暂时先针对Odoo进行适配。
 
 .. toctree::
-    :maxdepth: 2
+    :maxdepth: 4

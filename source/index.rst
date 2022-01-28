@@ -7,12 +7,13 @@
 ==========================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: 项目:
 
    wecom/index
    assistant/index
    theme/index
+   contact/index
 
 Indices and tables
 ==================
