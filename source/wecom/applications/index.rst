@@ -9,3 +9,4 @@
    syncing/index
    material/index
    auth/index
+   msgaudit/index
