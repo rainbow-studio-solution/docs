@@ -10,3 +10,4 @@
    material/index
    auth/index
    msgaudit/index
+   chatdata2contacts/index
