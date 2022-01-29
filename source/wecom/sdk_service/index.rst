@@ -26,7 +26,7 @@
 
 感谢 群友 NickCake 的支持
 
-使用APT安装依赖
+Debian系安装依赖
 :::::::::::::::::::::::::::::::::
 
 请使用APT安装依赖，否则无法正常启动SDK服务
@@ -35,6 +35,37 @@
 
     sudo apt-get install python3-httptools python3-uvloop python3-uvicorn 
 
+
+CentOS7 安装依赖
+:::::::::::::::::::::::::::::::::
+
+1.安装依赖包
+
+.. code::
+
+    sudo yum install epel-release -y
+    sudo yum groupinstall "Development tools" -y
+    sudo yum install zlib-devel bzip2-devel openssl-devel ncurses-devel zx-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel -y
+
+2. 编译安装 python3.7.12
+
+.. code::
+
+    wget https://www.python.org/ftp/python/3.7.12/Python-3.7.12.tar.xz  --no-check-certificate
+    tar xf Python-3.7.12.tar.xz
+    cd Python-3.7.12
+    ./configure --prefix=/usr/local --with-ensurepip=install --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
+    sudo yum install libffi-devel -y 
+    sudo make && sudo make altinstall
+
+    sudo /usr/bin/python3 -m pip install --upgrade pip
+
+3. 更新软连接
+   
+.. code::
+
+    sudo rm /usr/bin/python3
+    sudo ln -s /usr/local/bin/python3.7 /usr/bin/python3
 
 添加wecomsdk服务文件
 :::::::::::::::::::::::::::::::::
@@ -53,7 +84,7 @@
 
     cd  /app
     # 安装需要sudo pip安装，否则会安装到非home目录
-    sudo pip3 install requirements.txt -i https://pypi.doubanio.com/simple 
+    sudo pip3 install -r  requirements.txt -i https://pypi.doubanio.com/simple 
 
 4. 添加 wecomsdk.service 文件到 /lib/systemd/system/
 5. 使用 whereis 或 which 命令查询Python3 和 uvicorn 的路径，添加服务的时候需要用到
